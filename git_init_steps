@@ -1,0 +1,22 @@
+git init
+
+git add .
+
+git commit -m "initial commit"
+
+git remote add <nikname> <gitHub link>
+
+
+git pull <nikname> main --allow-unrelated-histories
+
+git pull <nick> main
+
+
+
+
+
+
+use git branch -M main
+to rename master to main branch
+
+git push <nick> main
