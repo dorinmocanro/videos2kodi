@@ -21,6 +21,9 @@ target_link_libraries("${MY_PROJECT_NAME}" myfunc)
 
 target_include_directories("${MY_PROJECT_NAME}" PUBLIC
 			   "${PROJECT_SOURCE_DIR}/myFunc"
+			   "${PROJECT_SOURCE_DIR}/FLTK"
+			   #add FLTK costum config.h file
+			   "${PROJECT_BINARY_DIR}/FLTK"
 )
 
 
