@@ -17,7 +17,11 @@ target_link_directories( "${MY_PROJECT_NAME}"
        	PUBLIC 
 	   lib
 )
-target_link_libraries("${MY_PROJECT_NAME}" myfunc)
+target_link_libraries("${MY_PROJECT_NAME}" 
+	myfunc
+	fltk
+	
+)
 
 target_include_directories("${MY_PROJECT_NAME}" PUBLIC
 			   "${PROJECT_SOURCE_DIR}/myFunc"
