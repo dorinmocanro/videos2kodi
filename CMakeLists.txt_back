@@ -1,9 +1,8 @@
-cmake_minimum_required (VERSION 3.22)
+cmake_minimum_required (VERSION 3.31)
 
 set (CMAKE_CXX_STANDARD 23)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
 set (MY_PROJECT_NAME Hello)
-add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 # set output
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")

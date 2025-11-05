@@ -1,16 +1,22 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <locale>
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
 
+#include <windows.h>
+//#include <winuser.h>
+#include <locale.h>
+
+void myDisplay (){
+
+	MessageBoxW(nullptr, L"Operation completed successfullyăâîșț.", L"Info", MB_OK | MB_ICONINFORMATION);
+}
 
 
 // filesystem demo
 void FDemo() {
-	long unsigned size=0;
 	std::cout << "Hello World"<< std::endl;
 	//std::filesystem::path myPath("C:\\Users\\dorin\\Desktop");
 	//std::filesystem::path myPath("/mnt/c/dorin_excel_data/tablete/alte fisiere");
@@ -19,19 +25,21 @@ void FDemo() {
 	myFile << "test\n";
 	//std::setlocale(LC_ALL, localname);
 	//ro_RO.utf-8
+	//const char* const localname = "ro_RO.utf-8";
 	const char* const localname = "ro_RO.utf-8";
-	std::setlocale(LC_ALL, localname);
-	//std::locale::global (std::locale(localname));
-	std::cout <<"Locale is: " << std::locale("").name().c_str() << "\n"; 
-
+	std::cout << "std::setlocale = " << std::setlocale(LC_ALL, localname) <<std::endl ;
+	std::locale::global (std::locale(localname));
 	std::cout << "mypath= " << myPath.string() << std::endl;
+
+	std::cout << "test string: aăîsștț\n";
+	std::wcout <<"test string: aăîsștț\n";
+	std::wcout <<L"test string: aăîsștț\n";
+	std::cout <<"ăîțș\n";
 	for (auto const& dir_entry : std::filesystem::recursive_directory_iterator(myPath,std::filesystem::directory_options::skip_permission_denied) ){
 		std::cout<<dir_entry.path().string()<<std::endl;
 		myFile << dir_entry.path().string() <<std::endl;
-		++size;
 	}
 	std::cout <<"caractere speciale \naăâî sș tțț \n";
-	std::cout << "elemente totale: " << size <<std::endl;
 	myFile.close();
 }
 
@@ -52,5 +60,6 @@ int gui_window(){
 int main (int argc , char **argv) {
 	////gui_window();
 	FDemo();
+	myDisplay();
 	return 0;
 	}
