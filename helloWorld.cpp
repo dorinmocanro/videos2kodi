@@ -41,9 +41,49 @@ const BOOL  &x =SetConsoleOutputCP(65001);
 #include <winnls.h>
 //todo 
 // get windows language
-// GetUserPreferredUILanguages
+// GetUserPreferredUILanguages (DWORD ,PULONG
 //
 //
+void get_language(){
+	std::cout << "getting language \n";
+	//PZZWSTR test  = new WSTR[100];
+	DWORD flags = MUI_LANGUAGE_NAME,buffLenght = 0;
+	ULONG langs = 0 ;
+
+	PZZWSTR ptrLang;
+	PULONG ptrSize;
+	if (GetUserPreferredUILanguages(flags, &langs, nullptr  ,&buffLenght )) {
+		std::cout <<"lang in if: " << langs<< std::endl;
+		std::cout <<"buff lenght: " << buffLenght << std::endl;
+	}
+	else {std::cout <<"error in 1\n";}
+
+	// ar trebuii sa functioneaze cu **char (sau **wchar) ? cum new (size of buffer) ?
+	std::vector<wchar_t> languagesBuffer  (static_cast<int>(langs));
+	if (GetUserPreferredUILanguages(
+				flags,
+				&langs, 
+				languagesBuffer.data(),
+				&buffLenght )) {
+		std::cout <<std::endl;
+		std::cout <<"lang in if: " << langs<< std::endl;
+		std::cout <<"buff lenght: " << buffLenght << std::endl;
+		std::cout << "Language:\n";
+
+		// lista (vector) de limbi este separata prin \0 caracter
+		for (int  i =0; i< buffLenght ; i++ ) {
+			if (languagesBuffer[i] == '\0')
+				languagesBuffer[i]=' ';
+			std::wcout << languagesBuffer[i] ;
+		}
+		std::cout <<std::endl;
+	}
+	else {std::cout <<"error im 2\n";}
+
+	std::cout <<"lang: " << langs << std::endl;
+}
+
+
 void myDisplay (){
 
 	MessageBoxW(nullptr, L"Operation completed successfullyăâîșț.", L"Info", MB_OK | MB_ICONINFORMATION);
@@ -82,7 +122,7 @@ void FDemo() {
 #endif
 	{
 		for (auto const& dir_entry : std::filesystem::recursive_directory_iterator(myPath,std::filesystem::directory_options::skip_permission_denied) ){
-			//std::cout << dir_entry.path().string()<< "\n";
+			std::cout << dir_entry.path().string()<< "\n";
 			//myFile << dir_entry.path().string();
 		}
 		myFile.close();
@@ -113,7 +153,8 @@ int gui_window(){
 int main (int argc , char **argv) {
 	SetConsoleOutputCP(65001);
 	////gui_window();
-	FDemo();
+	//FDemo();
 	//myDisplay();
+	get_language();
 	return 0;
-	}
+}
