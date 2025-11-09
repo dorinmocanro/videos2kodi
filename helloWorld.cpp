@@ -4,18 +4,21 @@
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
-#include <cstdio>
+//#include <cstdio>
+
+
 #ifdef _MSC_VER
-#include <fcntl.h>
-#include <io.h>
+//#include <fcntl.h>
+//#include <io.h>
+
 #include <windows.h>
-//const BOOL  &x =SetConsoleOutputCP(65001);
-#else
+//set console output for windows to utf-8. i need a variable to run function outside maine...
+const BOOL  &x =SetConsoleOutputCP(65001);
+//#else
+#endif 
+
 #include <clocale>
 #include <locale>
-#endif
-#include <filesystem>
-#include <fstream>
 
 
 /*
