@@ -1,11 +1,12 @@
 #include <iostream>
+
 #include <fstream>
 #include <filesystem>
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
 //#include <cstdio>
-
+/*
 
 #ifdef _MSC_VER
 //#include <fcntl.h>
@@ -17,9 +18,9 @@ const BOOL  &x =SetConsoleOutputCP(65001);
 //#else
 #endif 
 
-#include <clocale>
-#include <locale>
-
+//#include <clocale>
+//#include <locale>
+*/
 
 /*
 //if we run windows
@@ -40,58 +41,17 @@ const BOOL  &x =SetConsoleOutputCP(65001);
 #include <cstdio>
 */
 
-#include <cstdlib>
-#include <winnls.h>
+//#include <cstdlib>
+//#include <winnls.h>
 //todo 
 // get windows language
 // GetUserPreferredUILanguages (DWORD ,PULONG
 //
 //
-void get_language(){
-	std::cout << "getting language \n";
-	//PZZWSTR test  = new WSTR[100];
-	DWORD flags = MUI_LANGUAGE_NAME,buffLenght = 0;
-	ULONG langs = 0 ;
-
-	PZZWSTR ptrLang;
-	PULONG ptrSize;
-	if (GetUserPreferredUILanguages(flags, &langs, nullptr  ,&buffLenght )) {
-		std::cout <<"lang in if: " << langs<< std::endl;
-		std::cout <<"buff lenght: " << buffLenght << std::endl;
-	}
-	else {std::cout <<"error in 1\n";}
-
-	// ar trebuii sa functioneaze cu **char (sau **wchar) ? cum new (size of buffer) ?
-	std::vector<wchar_t> languagesBuffer  (static_cast<int>(langs));
-	if (GetUserPreferredUILanguages(
-				flags,
-				&langs, 
-				languagesBuffer.data(),
-				&buffLenght )) {
-		std::cout <<std::endl;
-		std::cout <<"lang in if: " << langs<< std::endl;
-		std::cout <<"buff lenght: " << buffLenght << std::endl;
-		std::cout << "Language:\n";
-
-		// lista (vector) de limbi este separata prin \0 caracter
-		for (int  i =0; i< buffLenght ; i++ ) {
-			if (languagesBuffer[i] == '\0')
-				languagesBuffer[i]=' ';
-			std::wcout << languagesBuffer[i] ;
-		}
-		std::cout <<std::endl;
-	}
-	else {std::cout <<"error im 2\n";}
-
-	std::cout <<"lang: " << langs << std::endl;
-}
-
-
-void myDisplay (){
-
-	MessageBoxW(nullptr, L"Operation completed successfullyăâîșț.", L"Info", MB_OK | MB_ICONINFORMATION);
-}
-
+//
+//
+#include <getLanguage.h>
+#include <GUIDisplay.h>
 // filesystem demo
 void FDemo() {
 	std::cout << "Hello World"<< std::endl;
@@ -154,10 +114,13 @@ int gui_window(){
 
 
 int main (int argc , char **argv) {
-	SetConsoleOutputCP(65001);
+	//SetConsoleOutputCP(65001);
 	////gui_window();
+	//include GUIDisplay.h
+	display::MessageBoxi();
 	//FDemo();
-	//myDisplay();
 	get_language();
+	std::cout <<"ENTER to exit:";
+	std::getchar();
 	return 0;
 }

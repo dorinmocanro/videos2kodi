@@ -12,19 +12,23 @@ project ("${MY_PROJECT_NAME}")
 
 add_executable ("${MY_PROJECT_NAME}" helloWorld.cpp)
 add_subdirectory (FLTK)
-
+add_subdirectory (src)
 #target_link_directories( "${MY_PROJECT_NAME}"
 #       	PUBLIC 
 #	   lib
 #)
 
+	
 target_link_libraries("${MY_PROJECT_NAME}" 
 	fltk
+	getLanguage
+	displayMessage
 )
 
 target_include_directories("${MY_PROJECT_NAME}" PUBLIC
 #			   "${PROJECT_SOURCE_DIR}/myFunc"
 			   "${PROJECT_SOURCE_DIR}/FLTK"
+			   "${PROJECT_SOURCE_DIR}/src"
 			   #add FLTK costum config.h file
 			   "${PROJECT_BINARY_DIR}/FLTK"
 )
