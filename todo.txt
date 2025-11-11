@@ -1,3 +1,0 @@
-se pare ca cdcp e responsabil in windows pt decoadera caracterelor in consola.
-se poate seta grafic in setari pentru limba prin activarea beta-unicode utf8
-sau prin comanda cdcp 65001
