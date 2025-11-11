@@ -2,53 +2,27 @@
 
 #include <fstream>
 #include <filesystem>
+
+//dont show console
+#ifdef _MSC_VER
+//#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+#endif
 //#include <cstdio>
 /*
 
-#ifdef _MSC_VER
 //#include <fcntl.h>
 //#include <io.h>
 
 #include <windows.h>
 //set console output for windows to utf-8. i need a variable to run function outside maine...
 const BOOL  &x =SetConsoleOutputCP(65001);
-//#else
 #endif 
 
-//#include <clocale>
-//#include <locale>
 */
 
-/*
-//if we run windows
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) ||defined (_MSC_VER) && !defined(__CYGWIN__)
-#include <windows.h>
-const BOOL  &x =SetConsoleOutputCP(65001);
-#include <fcntl.h>
-#include <io.h>
-//if linux
-#else 
-#include <clocale>
-#include <locale>
-#endif 
-
-#ifdef _MSC_VER
-#include <fcntl.h>
-#include <io.h>
-#include <cstdio>
-*/
-
-//#include <cstdlib>
-//#include <winnls.h>
-//todo 
-// get windows language
-// GetUserPreferredUILanguages (DWORD ,PULONG
-//
-//
-//
-//
 #include <getLanguage.h>
 #include <GUIDisplay.h>
+
 // filesystem demo
 void FDemo() {
 	std::cout << "Hello World"<< std::endl;
@@ -98,7 +72,7 @@ void FDemo() {
 
 
 int main (int argc , char **argv) {
-	//get_language();
+	get_language();
 	FL::gui_window();
 	//display::MessageBoxi();
 	//FDemo();
