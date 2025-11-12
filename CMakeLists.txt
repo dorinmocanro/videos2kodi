@@ -25,7 +25,8 @@ add_subdirectory (src)
 target_link_libraries("${MY_PROJECT_NAME}" 
 	fltk
 	getLanguage
-	displayMessage
+        getFiles
+        displayMessage
 )
 
 # where *.h headers are
