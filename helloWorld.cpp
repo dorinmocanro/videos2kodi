@@ -11,8 +11,8 @@
 // filesystem demo
 
 int main (int argc , char **argv) {
-	getLanguage();
-        //getFiles::FDemo();
+        std::wcout << "Languages: " << getLanguage();
+        getFiles::FDemo();
 	//FL::gui_window();
 
 	//display::MessageBoxi();
