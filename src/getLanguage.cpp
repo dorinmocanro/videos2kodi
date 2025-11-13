@@ -27,43 +27,15 @@ std::wstring getLanguage(){
 	}
 	else {std::cout <<"error gettin languages in buffer lenght\n";}
 
-	/* //testing
-	ptrLang = new  std::remove_reference<decltype (*ptrLang)>::type();
-	delete ptrLang;
-	*/ //end testing
-
-	// initiate pointer. may use uniqptr?
-
-        //std::vector<wchar_t> languagesBuffer  (static_cast<int>(buffLenght));
         std::basic_string<wchar_t> languagesBuffer (static_cast<int>(buffLenght),'\0');
 	if (GetUserPreferredUILanguages(
 				flags,
 				&langs, 
 				languagesBuffer.data(),
 				&buffLenght )) {
-		// lista (vector) de limbi este separata prin \0 caracter
-/*
-                for (int  i =0; i< buffLenght ; i++ ) {
-			if (languagesBuffer[i] == '\0')
-				languagesBuffer[i]='\0';
-			std::wcout << languagesBuffer[i];
-		} //for
-*
-                std::wstring temp; 
-                for (int i =0 ; languagesBuffer[i] != '\0' && i <buffLenght ; i++){
-                    temp +=languagesBuffer[i];
-                    std::wcout << "temp: " << languagesBuffer[i] << std::endl;
-                }
-
-
-                std::wcout << "String: "<< temp << std::endl;
-                std::cout << temp.size() <<" <- size\n";
-*/
 	} //if
 	else {std::cout <<"error getting language lists\n";}
-//        std::wstring temp(languagesBuffer.c_str());
-//        std::wcout << languagesBuffer << std::endl << languagesBuffer.size();
-//        std::wcout << temp << " -< temp\n" << temp.size();
+        // lista (string) de limbi este separata prin \0 caracter
         return std::wstring (languagesBuffer.c_str());
 
 }
